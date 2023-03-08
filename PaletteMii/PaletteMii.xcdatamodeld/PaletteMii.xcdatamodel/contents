@@ -11,5 +11,11 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="colorHexes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ColorHex" inverseName="palettes" inverseEntity="ColorHex"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="palettes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Palette"/>
     </entity>
 </model>

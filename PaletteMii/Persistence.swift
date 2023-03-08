@@ -14,12 +14,12 @@ struct PersistenceController {
     let result = PersistenceController(inMemory: true)
     let viewContext = result.container.viewContext
     
-        for _ in 0..<10 {
-          let newItem = Palette(context: viewContext)
-          newItem.id = UUID().uuidString
-          newItem.title = "Sample"
-        }
-
+    for _ in 0..<10 {
+      let newItem = Palette(context: viewContext)
+      newItem.id = UUID().uuidString
+      newItem.title = "Sample"
+    }
+    
     do {
       try viewContext.save()
     } catch {
@@ -73,13 +73,13 @@ struct PersistenceController {
     for palette in palettes! {
       viewContext.delete(palette)
     }
-
+    
     /// Paletteテーブル登録
     for (title, colorHexList) in paletteLists {
       let newPalette = Palette(context: viewContext)
       newPalette.id = UUID().uuidString
       newPalette.title = title
-
+      
       // register colorHexes
       for colorHex in colorHexList {
         let fetchRequestColorHex = NSFetchRequest<NSFetchRequestResult>(entityName: "ColorHex")
@@ -98,15 +98,15 @@ struct PersistenceController {
       } // END: colorHex
       
     }
-
-
     
-  //
-  //    for _ in 0..<10 {
-  //      let newItem = Palette(context: viewContext)
-  //      newItem.id = UUID().uuidString
-  //      newItem.title = "Sample"
-  //    }
+    
+    
+    //
+    //    for _ in 0..<10 {
+    //      let newItem = Palette(context: viewContext)
+    //      newItem.id = UUID().uuidString
+    //      newItem.title = "Sample"
+    //    }
     do {
       try viewContext.save()
     } catch {
@@ -116,14 +116,14 @@ struct PersistenceController {
       fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
     }
   }
-
+  
   
   /// NSSet? → [ColorHex]変換
   func toColorHexArray(_ colorHexes: NSSet?) -> [ColorHex] {
-      guard let colorHexes = colorHexes as? Set<ColorHex> else {
-          return []
-      }
-      return Array(colorHexes)
+    guard let colorHexes = colorHexes as? Set<ColorHex> else {
+      return []
+    }
+    return Array(colorHexes)
   }
-
+  
 }
