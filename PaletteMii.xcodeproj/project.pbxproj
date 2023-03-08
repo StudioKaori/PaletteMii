@@ -12,7 +12,7 @@
 		43F2B7DF29B62AD500C063B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F2B7DE29B62AD500C063B6 /* Assets.xcassets */; };
 		43F2B7E229B62AD500C063B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F2B7E129B62AD500C063B6 /* Preview Assets.xcassets */; };
 		43F2B7E429B62AD500C063B6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7E329B62AD500C063B6 /* Persistence.swift */; };
-		43F2B7E729B62AD500C063B6 /* PaletteMii.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */; };
+		43F2B7E729B62AD500C063B6 /* PaletteContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7E529B62AD500C063B6 /* PaletteContainer.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
 				43F2B7DE29B62AD500C063B6 /* Assets.xcassets */,
 				43F2B7E329B62AD500C063B6 /* Persistence.swift */,
-				43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */,
+				43F2B7E529B62AD500C063B6 /* PaletteContainer.xcdatamodeld */,
 				43F2B7E029B62AD500C063B6 /* Preview Content */,
 			);
 			path = PaletteMii;
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F2B7E429B62AD500C063B6 /* Persistence.swift in Sources */,
-				43F2B7E729B62AD500C063B6 /* PaletteMii.xcdatamodeld in Sources */,
+				43F2B7E729B62AD500C063B6 /* PaletteContainer.xcdatamodeld in Sources */,
 				43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */,
 				43F2B7DB29B62AD400C063B6 /* PaletteMiiApp.swift in Sources */,
 			);
@@ -349,13 +349,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */ = {
+		43F2B7E529B62AD500C063B6 /* PaletteContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				43F2B7E629B62AD500C063B6 /* PaletteMii.xcdatamodel */,
 			);
 			currentVersion = 43F2B7E629B62AD500C063B6 /* PaletteMii.xcdatamodel */;
-			path = PaletteMii.xcdatamodeld;
+			path = PaletteContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

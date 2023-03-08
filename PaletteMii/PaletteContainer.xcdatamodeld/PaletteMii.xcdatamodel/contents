@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Color" representedClassName="Color" syncable="YES" codeGenerationType="class">
+        <attribute name="hex" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="palettes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Palette" inverseName="colors" inverseEntity="Palette"/>
+    </entity>
+    <entity name="Palette" representedClassName="Palette" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="colors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Color" inverseName="palettes" inverseEntity="Color"/>
+    </entity>
+</model>
