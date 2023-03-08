@@ -14,52 +14,11 @@ struct PersistenceController {
     let result = PersistenceController(inMemory: true)
     let viewContext = result.container.viewContext
     
-    // Sample data
-    //
-    //    for _ in 0..<10 {
-    //      let newItem = Palette(context: viewContext)
-    //      newItem.id = UUID().uuidString
-    //      newItem.title = "Sample"
-    //    }
-
-    /// 新しいpaletteList
-    let paletteLists: [(String, [String])] = [
-      ("my palette1", ["93AEC1", "FF0000", "00FF00"]),
-      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"]),
-      ("my palette3", ["F8B042", "FF00FF", "00FFFF"])
-    ]
-    /// Paletteテーブル全消去
-    let fetchRequestPalette = NSFetchRequest<NSFetchRequestResult>(entityName: "Palette")
-    fetchRequestPalette.entity = Palette.entity()
-    let palettes = try? viewContext.fetch(fetchRequestPalette) as? [Palette]
-    for palette in palettes! {
-      viewContext.delete(palette)
-    }
-
-    /// Paletteテーブル登録
-    for (title, colorHexList) in paletteLists {
-      let newPalette = Palette(context: viewContext)
-      newPalette.id = UUID().uuidString
-      newPalette.title = title
-
-      // register colorHexes
-      for colorHex in colorHexList {
-        let fetchRequestColorHex = NSFetchRequest<NSFetchRequestResult>(entityName: "ColorHex")
-        fetchRequestColorHex.entity = ColorHex.entity()
-        fetchRequestColorHex.predicate = NSPredicate(format: "hex = %@", colorHex)
-        let result = try? viewContext.fetch(fetchRequestColorHex) as? [ColorHex]
-        if let existingColorHex = result?.first {
-          /// 既に存在している場合はそれを使用
-          newPalette.addToColorHexes(existingColorHex)
-        } else {
-          /// 存在しない場合は新規に作成
-          let newColorHex = ColorHex(context: viewContext)
-          newColorHex.hex = colorHex
-          newPalette.addToColorHexes(newColorHex)
+        for _ in 0..<10 {
+          let newItem = Palette(context: viewContext)
+          newItem.id = UUID().uuidString
+          newItem.title = "Sample"
         }
-      } // END: colorHex
-      
-    }
 
     do {
       try viewContext.save()
@@ -75,7 +34,7 @@ struct PersistenceController {
   let container: NSPersistentContainer
   
   init(inMemory: Bool = false) {
-    container = NSPersistentContainer(name: "PaletteMiiContainer")
+    container = NSPersistentContainer(name: "PaletteMii")
     if inMemory {
       container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
     }
@@ -99,7 +58,7 @@ struct PersistenceController {
   }
   
   
-  func registSampleData(viewContext: NSManagedObjectContext) {
+  func addSampleData(viewContext: NSManagedObjectContext) {
     
     /// 新しいpaletteList
     let paletteLists: [(String, [String])] = [

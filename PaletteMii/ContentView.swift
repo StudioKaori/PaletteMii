@@ -47,7 +47,7 @@ struct ContentView: View {
       Text("Select an item")
     }
     .onAppear {
-      PersistenceController.shared.registSampleData(viewContext: viewContext)
+      PersistenceController.shared.addSampleData(viewContext: viewContext)
     }
   }
   
