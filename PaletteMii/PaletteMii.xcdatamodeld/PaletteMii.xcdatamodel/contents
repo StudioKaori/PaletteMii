@@ -10,12 +10,12 @@
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="colorHexes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ColorHex" inverseName="palettes" inverseEntity="ColorHex"/>
-        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag"/>
+        <relationship name="colorHexes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ColorHex" inverseName="palettes" inverseEntity="ColorHex"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="palettes" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="palettes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Palette"/>
+        <relationship name="palettes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Palette" inverseName="tags" inverseEntity="Palette"/>
     </entity>
 </model>

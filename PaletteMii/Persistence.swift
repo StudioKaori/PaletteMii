@@ -66,6 +66,12 @@ struct PersistenceController {
       ("my palette2", ["9DBDBA", "00FFFF", "FF0000"]),
       ("my palette3", ["F8B042", "FF00FF", "00FFFF"])
     ]
+    
+//    let paletteLists: [(String, String)] = [
+//      ("my palette1", "93AEC1,FF0000,00FF00"),
+//      ("my palette2", "9DBDBA,00FFFF,FF0000"),
+//      ("my palette3", ["F8B042", "FF00FF", "00FFFF"])
+//    ]
     /// Paletteテーブル全消去
     let fetchRequestPalette = NSFetchRequest<NSFetchRequestResult>(entityName: "Palette")
     fetchRequestPalette.entity = Palette.entity()
@@ -119,11 +125,11 @@ struct PersistenceController {
   
   
   /// NSSet? → [ColorHex]変換
-  func toColorHexArray(_ colorHexes: NSSet?) -> [ColorHex] {
-    guard let colorHexes = colorHexes as? Set<ColorHex> else {
-      return []
-    }
-    return Array(colorHexes)
+  func toColorHexArray(_ colorHexes: NSOrderedSet?) -> [ColorHex] {
+      guard let colorHexes = colorHexes?.array as? [ColorHex] else {
+          return []
+      }
+      return colorHexes
   }
   
 }
