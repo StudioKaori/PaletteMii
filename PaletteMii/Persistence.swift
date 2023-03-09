@@ -61,17 +61,11 @@ struct PersistenceController {
   func addSampleData(viewContext: NSManagedObjectContext) {
     
     /// 新しいpaletteList
-    let paletteLists: [(String, [String])] = [
-      ("my palette1", ["93AEC1", "FF0000", "00FF00"]),
-      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"]),
-      ("my palette3", ["F8B042", "FF00FF", "00FFFF"])
+    let paletteLists: [(String, [String], [String])] = [
+      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"]),
+      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"]),
+      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"])
     ]
-    
-//    let paletteLists: [(String, String)] = [
-//      ("my palette1", "93AEC1,FF0000,00FF00"),
-//      ("my palette2", "9DBDBA,00FFFF,FF0000"),
-//      ("my palette3", ["F8B042", "FF00FF", "00FFFF"])
-//    ]
     /// Paletteテーブル全消去
     let fetchRequestPalette = NSFetchRequest<NSFetchRequestResult>(entityName: "Palette")
     fetchRequestPalette.entity = Palette.entity()
@@ -81,7 +75,7 @@ struct PersistenceController {
     }
     
     /// Paletteテーブル登録
-    for (title, colorHexList) in paletteLists {
+    for (title, colorHexList, tagList) in paletteLists {
       let newPalette = Palette(context: viewContext)
       newPalette.id = UUID().uuidString
       newPalette.title = title
@@ -100,6 +94,23 @@ struct PersistenceController {
           let newColorHex = ColorHex(context: viewContext)
           newColorHex.hex = colorHex
           newPalette.addToColorHexes(newColorHex)
+        }
+      } // END: colorHex
+      
+      // register tags
+      for tag in tagList {
+        let fetchRequestTag = NSFetchRequest<NSFetchRequestResult>(entityName: "Tag")
+        fetchRequestTag.entity = Tag.entity()
+        fetchRequestTag.predicate = NSPredicate(format: "name = %@", tag)
+        let result = try? viewContext.fetch(fetchRequestTag) as? [Tag]
+        if let existingTag = result?.first {
+          /// 既に存在している場合はそれを使用
+          newPalette.addToTags(existingTag)
+        } else {
+          /// 存在しない場合は新規に作成
+          let newTag = Tag(context: viewContext)
+          newTag.name = tag
+          newPalette.addToTags(newTag)
         }
       } // END: colorHex
       
@@ -123,7 +134,6 @@ struct PersistenceController {
     }
   }
   
-  
   /// NSSet? → [ColorHex]変換
   func toColorHexArray(_ colorHexes: NSOrderedSet?) -> [ColorHex] {
       guard let colorHexes = colorHexes?.array as? [ColorHex] else {
@@ -131,5 +141,19 @@ struct PersistenceController {
       }
       return colorHexes
   }
+  
+  func toTagsArray(_ tags: NSOrderedSet?) -> [Tag] {
+    guard let tags = tags?.array as? [Tag] else {
+      return []
+    }
+    return tags
+  }
+  
+//  func orderedSetToArray<T>(_ items: NSOrderedSet?) -> [T] {
+//    guard let items = items?.array as? [T] else {
+//      return []
+//    }
+//    return items
+//  }
   
 }

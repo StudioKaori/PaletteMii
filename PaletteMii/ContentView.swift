@@ -27,6 +27,10 @@ struct ContentView: View {
               ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
                 Text(color.hex!)
               }
+              
+              ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
+                Text(tag.name!)
+              }
             }
           } label: {
             Text(item.title!)
