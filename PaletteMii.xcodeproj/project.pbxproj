@@ -66,9 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */,
+				4392020429BA357C00B9588B /* Extensions */,
 				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
 				43F2B7DE29B62AD500C063B6 /* Assets.xcassets */,
-				4392020429BA357C00B9588B /* Extensions */,
 				43F2B7E329B62AD500C063B6 /* Persistence.swift */,
 				43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */,
 				43F2B7E029B62AD500C063B6 /* Preview Content */,

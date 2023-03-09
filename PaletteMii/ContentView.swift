@@ -33,11 +33,34 @@ struct ContentView: View {
               }
             }
           } label: {
-            Text(item.title!)
+            HStack {
+              Image(systemName: "person")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 100, height: 100)
+                .cornerRadius(30)
+              
+              VStack(alignment: .leading) {
+                Text(item.title!)
+                
+                HStack {
+                  ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
+                    Text(color.hex!)
+                  }
+                }
+                
+                HStack {
+                  ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
+                    Text(tag.name!)
+                  }
+                }
+              }
+            }
           }
         }
         .onDelete(perform: deleteItems)
       }
+      .listStyle(.plain)
       .toolbar {
         ToolbarItem(placement: .navigationBarTrailing) {
           EditButton()
