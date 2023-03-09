@@ -21,15 +21,17 @@ struct PersistenceController {
 //    }
     
     // Preview data
-    let paletteLists: [(String, [String], [String])] = [
-      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"]),
-      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"]),
-      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"])
+    let paletteLists: [(String, [String], [String], Bool)] = [
+      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"], true),
+      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"], false),
+      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"], false)
     ]
-    for (paletteTitle, colorHexes, tags) in paletteLists {
+    for (paletteTitle, colorHexes, tags, isFavorite) in paletteLists {
       let newPalette = Palette(context: viewContext)
       newPalette.id = UUID().uuidString
       newPalette.title = paletteTitle
+      newPalette.createdAt = Date()
+      newPalette.isFavorite = isFavorite
       
       for colorHex in colorHexes {
         let newColorHex = ColorHex(context: viewContext)
@@ -86,10 +88,10 @@ struct PersistenceController {
   func addSampleData(viewContext: NSManagedObjectContext) {
     
     /// 新しいpaletteList
-    let paletteLists: [(String, [String], [String])] = [
-      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"]),
-      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"]),
-      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"])
+    let paletteLists: [(String, [String], [String], Bool)] = [
+      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"], true),
+      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"], false),
+      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"], false)
     ]
     /// Paletteテーブル全消去
     let fetchRequestPalette = NSFetchRequest<NSFetchRequestResult>(entityName: "Palette")
@@ -100,10 +102,12 @@ struct PersistenceController {
     }
     
     /// Paletteテーブル登録
-    for (title, colorHexList, tagList) in paletteLists {
+    for (title, colorHexList, tagList, isFavorite) in paletteLists {
       let newPalette = Palette(context: viewContext)
       newPalette.id = UUID().uuidString
       newPalette.title = title
+      newPalette.createdAt = Date()
+      newPalette.isFavorite = isFavorite
       
       // register colorHexes
       for colorHex in colorHexList {
