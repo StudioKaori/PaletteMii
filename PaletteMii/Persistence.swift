@@ -14,10 +14,34 @@ struct PersistenceController {
     let result = PersistenceController(inMemory: true)
     let viewContext = result.container.viewContext
     
-    for _ in 0..<10 {
-      let newItem = Palette(context: viewContext)
-      newItem.id = UUID().uuidString
-      newItem.title = "Sample"
+//    for _ in 0..<10 {
+//      let newItem = Palette(context: viewContext)
+//      newItem.id = UUID().uuidString
+//      newItem.title = "Sample"
+//    }
+    
+    // Preview data
+    let paletteLists: [(String, [String], [String])] = [
+      ("my palette1", ["93AEC1", "FF0000", "00FF00"], ["fruity", "pop"]),
+      ("my palette2", ["9DBDBA", "00FFFF", "FF0000"], ["red", "pop"]),
+      ("my palette3", ["F8B042", "FF00FF", "00FFFF"], ["fruity", "blue"])
+    ]
+    for (paletteTitle, colorHexes, tags) in paletteLists {
+      let newPalette = Palette(context: viewContext)
+      newPalette.id = UUID().uuidString
+      newPalette.title = paletteTitle
+      
+      for colorHex in colorHexes {
+        let newColorHex = ColorHex(context: viewContext)
+        newColorHex.hex = colorHex
+        newPalette.addToColorHexes(newColorHex)
+      }
+      
+      for tag in tags {
+        let newTag = Tag(context: viewContext)
+        newTag.name = tag
+        newPalette.addToTags(newTag)
+      }
     }
     
     do {
@@ -58,6 +82,7 @@ struct PersistenceController {
   }
   
   
+  // Generate preview data without color/tag object duplication
   func addSampleData(viewContext: NSManagedObjectContext) {
     
     /// 新しいpaletteList
@@ -116,14 +141,6 @@ struct PersistenceController {
       
     }
     
-    
-    
-    //
-    //    for _ in 0..<10 {
-    //      let newItem = Palette(context: viewContext)
-    //      newItem.id = UUID().uuidString
-    //      newItem.title = "Sample"
-    //    }
     do {
       try viewContext.save()
     } catch {
