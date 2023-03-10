@@ -11,6 +11,12 @@ import CoreData
 struct ContentView: View {
   @Environment(\.managedObjectContext) private var viewContext
   
+  // For image picker
+  @State private var image = Image(systemName: "photo")
+  @State var imageData: Data = .init(capacity:0)
+  @State var isImagePicker = false
+  @State var source:UIImagePickerController.SourceType = .photoLibrary
+  
   @FetchRequest(
     sortDescriptors: [NSSortDescriptor(keyPath: \Palette.id, ascending: true)],
     animation: .default)
@@ -18,8 +24,23 @@ struct ContentView: View {
   
   var body: some View {
     NavigationView {
-      
+
       VStack {
+        if let data = imageData, let uiImage = UIImage(data: data) {
+          Image(uiImage: uiImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+        } else {
+          Image(systemName: "person")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+        }
+        
+        ImageUploaderView(imageData: $imageData,
+                          source: $source,
+                          image: $image,
+                          isImagePicker: $isImagePicker)
+        
         HStack {
           ImageColorPicker()
           ImageColorPicker()
