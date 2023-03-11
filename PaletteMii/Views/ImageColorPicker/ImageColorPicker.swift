@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImageColorPicker: View {
   @State private var bgColor =
-  Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
+  Color(.white)
   var body: some View {
     VStack {
       ColorPicker("", selection: $bgColor, supportsOpacity: false)

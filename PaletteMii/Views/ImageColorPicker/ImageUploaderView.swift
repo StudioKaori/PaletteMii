@@ -12,7 +12,6 @@ struct ImageUploaderView : View {
   
   @Binding var imageData: Data
   @Binding var source: UIImagePickerController.SourceType
-  @Binding var image: Image
   @Binding var isImagePicker: Bool
   
   private func deleteImage() {
@@ -35,9 +34,9 @@ struct ImageUploaderView : View {
         Button {
           isShowingActionSheet = true
         } label: {
-          Image(systemName: "photo")
-            .font(.system(size: 12))
-            .foregroundColor(Color.theme.primaryText)
+          Image(systemName: "xmark.circle.fill")
+            .font(.system(size: 40))
+            .foregroundColor(.white)
             .onAppear {
               if imageData.count != 0 {
                 //todoDataManager.imageData = imageData
@@ -59,8 +58,8 @@ struct ImageUploaderView : View {
         Button {
           isShowingActionSheet = true
         } label: {
-          Image(systemName: "photo")
-            .font(.system(size: 12))
+          Image(systemName: "camera.circle")
+            .font(.system(size: 40))
             .foregroundColor(Color.theme.primaryText)
         }
         .actionSheet(isPresented: $isShowingActionSheet) {

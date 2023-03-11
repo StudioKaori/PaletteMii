@@ -11,6 +11,7 @@
 		4392020629BB496900B9588B /* PaletteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020529BB496900B9588B /* PaletteDataManager.swift */; };
 		4392020929BB5C7B00B9588B /* ImageColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020829BB5C7B00B9588B /* ImageColorPicker.swift */; };
 		4392020B29BB627E00B9588B /* ImageUploaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020A29BB627E00B9588B /* ImageUploaderView.swift */; };
+		4392020E29BC95F100B9588B /* ImageColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020D29BC95F100B9588B /* ImageColorPickerView.swift */; };
 		43F2B7DB29B62AD400C063B6 /* PaletteMiiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */; };
 		43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DC29B62AD400C063B6 /* ContentView.swift */; };
 		43F2B7DF29B62AD500C063B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F2B7DE29B62AD500C063B6 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 		4392020529BB496900B9588B /* PaletteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDataManager.swift; sourceTree = "<group>"; };
 		4392020829BB5C7B00B9588B /* ImageColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorPicker.swift; sourceTree = "<group>"; };
 		4392020A29BB627E00B9588B /* ImageUploaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderView.swift; sourceTree = "<group>"; };
+		4392020D29BC95F100B9588B /* ImageColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorPickerView.swift; sourceTree = "<group>"; };
 		43F2B7D729B62AD400C063B6 /* PaletteMii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaletteMii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteMiiApp.swift; sourceTree = "<group>"; };
 		43F2B7DC29B62AD400C063B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,25 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		4392020C29BB68AC00B9588B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
+				4392020F29BC96BC00B9588B /* ImageColorPicker */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4392020F29BC96BC00B9588B /* ImageColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				4392020A29BB627E00B9588B /* ImageUploaderView.swift */,
+				4392020D29BC95F100B9588B /* ImageColorPickerView.swift */,
+				4392020829BB5C7B00B9588B /* ImageColorPicker.swift */,
+			);
+			path = ImageColorPicker;
+			sourceTree = "<group>";
+		};
 		43F2B7CE29B62AD400C063B6 = {
 			isa = PBXGroup;
 			children = (
@@ -82,9 +103,7 @@
 			children = (
 				43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */,
 				4392020429BA357C00B9588B /* Extensions */,
-				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
-				4392020A29BB627E00B9588B /* ImageUploaderView.swift */,
-				4392020829BB5C7B00B9588B /* ImageColorPicker.swift */,
+				4392020C29BB68AC00B9588B /* Views */,
 				43F2B7DE29B62AD500C063B6 /* Assets.xcassets */,
 				4392020729BB51D400B9588B /* Utilities */,
 				43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */,
@@ -172,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F2B7E429B62AD500C063B6 /* Persistence.swift in Sources */,
+				4392020E29BC95F100B9588B /* ImageColorPickerView.swift in Sources */,
 				4392020629BB496900B9588B /* PaletteDataManager.swift in Sources */,
 				43F2B7E729B62AD500C063B6 /* PaletteMii.xcdatamodeld in Sources */,
 				43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */,
@@ -315,6 +335,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +365,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
