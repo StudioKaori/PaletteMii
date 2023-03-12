@@ -13,10 +13,11 @@ struct EyedropperView: View {
   let bgColor: Color
   @Binding var color: Color
   @State var isSelected: Bool = false
+  @State var isShowColorPicker: Bool = false
   
   var body: some View {
     ZStack {
-
+      
       Circle()
         .foregroundColor(color)
         .frame(width: 46, height: 46)
@@ -32,13 +33,32 @@ struct EyedropperView: View {
           .clipped()
           .offset(x: 26, y: -3)
       } else {
-        Circle()
-          .foregroundColor(color)
-          .frame(width: 46, height: 46)
+        Button {
+          isShowColorPicker.toggle()
+        } label: {
+          Circle()
+            .foregroundColor(color)
+            .frame(width: 46, height: 46)
+        }
+        
       }
       
+    } // END: zstack
+    .sheet(isPresented: $isShowColorPicker) {
+      ZStack(alignment: .topTrailing) {
+        CustomColorPicker(color: $color, isSelected: $isSelected)
+        
+        Button {
+          isShowColorPicker = false
+        } label: {
+          Image(systemName: "xmark.circle")
+            .font(.system(size: 24))
+            .foregroundColor(Color.theme.primaryText)
+        }
+        .padding()
 
-      
+      }
+
     }
   }
 }
@@ -48,7 +68,6 @@ struct CustomColorPicker: UIViewControllerRepresentable {
   
   // MARK: picker values
   @Binding var color: Color
-  
   @Binding var isSelected: Bool
   
   // This event is called before UIKit view is called, and execute the initialiser
