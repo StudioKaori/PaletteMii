@@ -21,7 +21,7 @@ struct ContentView: View {
   
   var body: some View {
     NavigationView {
-
+      
       VStack {
         ImageColorPickerView()
         
@@ -29,12 +29,12 @@ struct ContentView: View {
         HStack {
           EyedropperView(bgColor: .white, color: $pickerColor1)
           EyedropperView(bgColor: .white, color: $pickerColor2)
-//          ImageColorPicker()
-//          ImageColorPicker()
-//          ImageColorPicker()
-//          ImageColorPicker()
+          //          ImageColorPicker()
+          //          ImageColorPicker()
+          //          ImageColorPicker()
+          //          ImageColorPicker()
         }
-        
+    
         
         List {
           ForEach(items) { item in
@@ -94,7 +94,7 @@ struct ContentView: View {
       .onAppear {
         //PersistenceController.shared.addSampleData(viewContext: viewContext)
       } // END: list
-      }
+    }
     
     
   }
