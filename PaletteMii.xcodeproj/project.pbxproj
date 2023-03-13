@@ -102,10 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */,
+				4392020729BB51D400B9588B /* Utilities */,
 				4392020429BA357C00B9588B /* Extensions */,
 				4392020C29BB68AC00B9588B /* Views */,
 				43F2B7DE29B62AD500C063B6 /* Assets.xcassets */,
-				4392020729BB51D400B9588B /* Utilities */,
 				43F2B7E529B62AD500C063B6 /* PaletteMii.xcdatamodeld */,
 				43F2B7E029B62AD500C063B6 /* Preview Content */,
 			);

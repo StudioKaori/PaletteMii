@@ -16,8 +16,7 @@ struct ContentView: View {
     animation: .default)
   private var items: FetchedResults<Palette>
   
-  @State var pickerColor1: Color = .white
-  @State var pickerColor2: Color = .white
+  @State var pickerColor: [Color] = [.clear, .clear, .clear, .clear, .clear]
   
   var body: some View {
     NavigationView {
@@ -25,14 +24,10 @@ struct ContentView: View {
       VStack {
         ImageColorPickerView()
         
-        
         HStack {
-          EyedropperView(bgColor: .white, color: $pickerColor1)
-          EyedropperView(bgColor: .white, color: $pickerColor2)
-          //          ImageColorPicker()
-          //          ImageColorPicker()
-          //          ImageColorPicker()
-          //          ImageColorPicker()
+          ForEach(0 ..< pickerColor.count) { index in
+            EyedropperView(bgColor: .white, color: $pickerColor[index])
+          }
         }
     
         
