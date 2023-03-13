@@ -11,7 +11,9 @@ import SwiftUI
 // MARK: - Custom View for color picker
 struct EyedropperView: View {
   let bgColor: Color
-  @Binding var color: Color
+  let at: Int
+  @ObservedObject var EditVM = EditViewModel()
+  //@State var color: Color =
   @State var isSelected: Bool = false
   @State var isShowColorPicker: Bool = false
   
@@ -20,7 +22,7 @@ struct EyedropperView: View {
       ZStack {
         
         Circle()
-          .foregroundColor(color)
+          .foregroundColor(EditVM.pickerColors[at])
           .frame(width: 46, height: 46)
         
         Image(systemName: "circle")
@@ -29,7 +31,7 @@ struct EyedropperView: View {
           .frame(width: 44, height: 44)
           .foregroundColor(Color.theme.textFieldBg)
         if !isSelected {
-          CustomColorPicker(color: $color, isSelected: $isSelected)
+          CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
             .frame(width: 74, height: 50, alignment: .topLeading)
             .clipped()
             .offset(x: 26, y: -3)
@@ -38,7 +40,7 @@ struct EyedropperView: View {
             isShowColorPicker.toggle()
           } label: {
             Circle()
-              .foregroundColor(color)
+              .foregroundColor(EditVM.pickerColors[at])
               .frame(width: 46, height: 46)
           }
           
@@ -47,8 +49,9 @@ struct EyedropperView: View {
       } // END: zstack
       .sheet(isPresented: $isShowColorPicker) {
         ZStack(alignment: .topTrailing) {
-          CustomColorPicker(color: $color, isSelected: $isSelected)
+          CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
 
+          // Close custom color picker button
           Button {
             isShowColorPicker = false
           } label: {

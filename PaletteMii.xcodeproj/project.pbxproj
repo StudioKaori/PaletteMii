@@ -12,6 +12,7 @@
 		4392020B29BB627E00B9588B /* ImageUploaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020A29BB627E00B9588B /* ImageUploaderView.swift */; };
 		4392020E29BC95F100B9588B /* ImageColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392020D29BC95F100B9588B /* ImageColorPickerView.swift */; };
 		4392021329BC995100B9588B /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021229BC995100B9588B /* CustomColorPicker.swift */; };
+		4392021629BF6E7A00B9588B /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021529BF6E7A00B9588B /* EditViewModel.swift */; };
 		43F2B7DB29B62AD400C063B6 /* PaletteMiiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */; };
 		43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DC29B62AD400C063B6 /* ContentView.swift */; };
 		43F2B7DF29B62AD500C063B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F2B7DE29B62AD500C063B6 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		4392020A29BB627E00B9588B /* ImageUploaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderView.swift; sourceTree = "<group>"; };
 		4392020D29BC95F100B9588B /* ImageColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageColorPickerView.swift; sourceTree = "<group>"; };
 		4392021229BC995100B9588B /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
+		4392021529BF6E7A00B9588B /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		43F2B7D729B62AD400C063B6 /* PaletteMii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaletteMii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteMiiApp.swift; sourceTree = "<group>"; };
 		43F2B7DC29B62AD400C063B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
-				4392020F29BC96BC00B9588B /* ImageColorPicker */,
+				4392021429BF6E4900B9588B /* EditPaletteViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -80,6 +82,15 @@
 				4392021229BC995100B9588B /* CustomColorPicker.swift */,
 			);
 			path = ImageColorPicker;
+			sourceTree = "<group>";
+		};
+		4392021429BF6E4900B9588B /* EditPaletteViews */ = {
+			isa = PBXGroup;
+			children = (
+				4392021529BF6E7A00B9588B /* EditViewModel.swift */,
+				4392020F29BC96BC00B9588B /* ImageColorPicker */,
+			);
+			path = EditPaletteViews;
 			sourceTree = "<group>";
 		};
 		43F2B7CE29B62AD400C063B6 = {
@@ -190,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4392021629BF6E7A00B9588B /* EditViewModel.swift in Sources */,
 				4392021329BC995100B9588B /* CustomColorPicker.swift in Sources */,
 				43F2B7E429B62AD500C063B6 /* Persistence.swift in Sources */,
 				4392020E29BC95F100B9588B /* ImageColorPickerView.swift in Sources */,
