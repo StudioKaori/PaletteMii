@@ -9,8 +9,4 @@ import SwiftUI
 
 class EditViewModel: ObservableObject {
   @Published var pickerColors: [Color] = [.clear, .clear, .clear, .clear, .clear]
-  
-  func deleteColor(at: Int) {
-    
-  }
 }

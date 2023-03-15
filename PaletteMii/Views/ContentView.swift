@@ -22,14 +22,9 @@ struct ContentView: View {
     NavigationView {
       
       VStack {
-        ImageColorPickerView()
-        
-        HStack {
-          ForEach(0 ..< EditVM.pickerColors.count) { index in
-            EyedropperView(bgColor: .white, at: index)
-          }
+        NavigationLink("Generate palette") {
+          GenerateFromImageView()
         }
-    
         
         List {
           ForEach(items) { item in
