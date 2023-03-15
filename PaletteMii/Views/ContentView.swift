@@ -16,75 +16,71 @@ struct ContentView: View {
     animation: .default)
   private var items: FetchedResults<Palette>
   
-  @ObservedObject var EditVM = EditViewModel()
-  
   var body: some View {
-    NavigationView {
-      
-      VStack {
-        NavigationLink("Generate palette") {
-          GenerateFromImageView()
-        }
-        
-        List {
-          ForEach(items) { item in
-            NavigationLink {
-              HStack {
-                Text("Item at \(item.title!)")
-                
-                ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
-                  Text(color.hex!)
-                }
-                
-                ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
-                  Text(tag.name!)
-                }
-              }
-            } label: {
-              HStack {
-                Image(systemName: "person")
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                  .frame(width: 100, height: 100)
-                  .cornerRadius(30)
-                
-                VStack(alignment: .leading) {
-                  Text(item.title!)
-                  
-                  HStack {
-                    ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
-                      Text(color.hex!)
-                    }
-                  }
-                  
-                  HStack {
-                    ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
-                      Text(tag.name!)
-                    }
-                  }
-                }
-              }
-            }
-          }
-          .onDelete(perform: deleteItems)
-        }
-        .listStyle(.plain)
-        .toolbar {
-          ToolbarItem(placement: .navigationBarTrailing) {
-            EditButton()
-          }
-          ToolbarItem {
-            Button(action: addItem) {
-              Label("Add Item", systemImage: "plus")
-            }
-          }
-        }
-        Text("Select an item")
+    VStack {
+      NavigationLink("Generate palette") {
+        GenerateFromImageView()
       }
-      .onAppear {
-        //PersistenceController.shared.addSampleData(viewContext: viewContext)
-      } // END: list
+      
+      List {
+        ForEach(items) { item in
+          NavigationLink {
+            HStack {
+              Text("Item at \(item.title!)")
+              
+              ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
+                Text(color.hex!)
+              }
+              
+              ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
+                Text(tag.name!)
+              }
+            }
+          } label: {
+            HStack {
+              Image(systemName: "person")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 100, height: 100)
+                .cornerRadius(30)
+              
+              VStack(alignment: .leading) {
+                Text(item.title!)
+                
+                HStack {
+                  ForEach(PersistenceController.shared.toColorHexArray(item.colorHexes), id: \.self) { color in
+                    Text(color.hex!)
+                  }
+                }
+                
+                HStack {
+                  ForEach(PersistenceController.shared.toTagsArray(item.tags), id: \.self) { tag in
+                    Text(tag.name!)
+                  }
+                }
+              }
+            }
+          }
+        }
+        .onDelete(perform: deleteItems)
+      }
+      .listStyle(.plain)
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          EditButton()
+        }
+        ToolbarItem {
+          Button(action: addItem) {
+            Label("Add Item", systemImage: "plus")
+          }
+        }
+      }
+      Text("Select an item")
     }
+    .onAppear {
+      //PersistenceController.shared.addSampleData(viewContext: viewContext)
+    } // END: list
+    
     
     
   }

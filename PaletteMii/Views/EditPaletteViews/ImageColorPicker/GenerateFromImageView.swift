@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct GenerateFromImageView: View {
-  @ObservedObject var EditVM = EditViewModel()
+  @ObservedObject var editVM = EditViewModel()
   var body: some View {
     VStack {
       ImageColorPickerView()
       
       HStack {
-        ForEach(0 ..< EditVM.pickerColors.count) { index in
-          EyedropperView(bgColor: .white, at: index)
+        ForEach(0 ..< editVM.pickerColors.count) { index in
+          EyedropperView(bgColor: .white, at: index, editVM: editVM)
         }
       }
   

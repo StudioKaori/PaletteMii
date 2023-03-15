@@ -12,7 +12,7 @@ import SwiftUI
 struct EyedropperView: View {
   let bgColor: Color
   let at: Int
-  @ObservedObject var EditVM = EditViewModel()
+  @ObservedObject var editVM: EditViewModel
   //@State var color: Color =
   @State var isSelected: Bool = false
   @State var isShowColorPicker: Bool = false
@@ -21,7 +21,7 @@ struct EyedropperView: View {
     ZStack {
       
       Circle()
-        .foregroundColor(EditVM.pickerColors[at])
+        .foregroundColor(editVM.pickerColors[at])
         .frame(width: 46, height: 46)
       
       Image(systemName: "circle")
@@ -30,7 +30,7 @@ struct EyedropperView: View {
         .frame(width: 44, height: 44)
         .foregroundColor(Color.theme.textFieldBg)
       if !isSelected {
-        CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
+        CustomColorPicker(color: $editVM.pickerColors[at], isSelected: $isSelected)
           .frame(width: 74, height: 50, alignment: .topLeading)
           .clipped()
           .offset(x: 26, y: -3)
@@ -39,7 +39,7 @@ struct EyedropperView: View {
           isShowColorPicker.toggle()
         } label: {
           Circle()
-            .foregroundColor(EditVM.pickerColors[at])
+            .foregroundColor(editVM.pickerColors[at])
             .frame(width: 46, height: 46)
         }
         
@@ -48,12 +48,12 @@ struct EyedropperView: View {
     } // END: zstack
     .sheet(isPresented: $isShowColorPicker) {
       ZStack(alignment: .topTrailing) {
-        CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
+        CustomColorPicker(color: $editVM.pickerColors[at], isSelected: $isSelected)
 
         HStack {
           // Delete button
           Button {
-            EditVM.pickerColors.remove(at: at)
+            editVM.pickerColors.remove(at: at)
           } label: {
             Image(systemName: "trash.circle")
               .font(.system(size: 24))

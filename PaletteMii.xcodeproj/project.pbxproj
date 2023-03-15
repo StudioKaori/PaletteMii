@@ -71,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				43F2B7DC29B62AD400C063B6 /* ContentView.swift */,
-				4392021729C1C17800B9588B /* GenerateFromImageView.swift */,
 				4392021429BF6E4900B9588B /* EditPaletteViews */,
 			);
 			path = Views;
@@ -80,6 +79,7 @@
 		4392020F29BC96BC00B9588B /* ImageColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				4392021729C1C17800B9588B /* GenerateFromImageView.swift */,
 				4392020A29BB627E00B9588B /* ImageUploaderView.swift */,
 				4392020D29BC95F100B9588B /* ImageColorPickerView.swift */,
 				4392021229BC995100B9588B /* CustomColorPicker.swift */,

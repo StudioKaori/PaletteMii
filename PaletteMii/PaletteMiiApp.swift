@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct PaletteMiiApp: App {
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-        }
+  let persistenceController = PersistenceController.shared
+  
+  var body: some Scene {
+    WindowGroup {
+      NavigationView {
+        ContentView()
+          .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      }
     }
+  }
 }
