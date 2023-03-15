@@ -18,57 +18,61 @@ struct EyedropperView: View {
   @State var isShowColorPicker: Bool = false
   
   var body: some View {
-    VStack {
-      ZStack {
-        
-        Circle()
-          .foregroundColor(EditVM.pickerColors[at])
-          .frame(width: 46, height: 46)
-        
-        Image(systemName: "circle")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 44, height: 44)
-          .foregroundColor(Color.theme.textFieldBg)
-        if !isSelected {
-          CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
-            .frame(width: 74, height: 50, alignment: .topLeading)
-            .clipped()
-            .offset(x: 26, y: -3)
-        } else {
-          Button {
-            isShowColorPicker.toggle()
-          } label: {
-            Circle()
-              .foregroundColor(EditVM.pickerColors[at])
-              .frame(width: 46, height: 46)
-          }
-          
+    ZStack {
+      
+      Circle()
+        .foregroundColor(EditVM.pickerColors[at])
+        .frame(width: 46, height: 46)
+      
+      Image(systemName: "circle")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 44, height: 44)
+        .foregroundColor(Color.theme.textFieldBg)
+      if !isSelected {
+        CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
+          .frame(width: 74, height: 50, alignment: .topLeading)
+          .clipped()
+          .offset(x: 26, y: -3)
+      } else {
+        Button {
+          isShowColorPicker.toggle()
+        } label: {
+          Circle()
+            .foregroundColor(EditVM.pickerColors[at])
+            .frame(width: 46, height: 46)
         }
         
-      } // END: zstack
-      .sheet(isPresented: $isShowColorPicker) {
-        ZStack(alignment: .topTrailing) {
-          CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
+      }
+      
+    } // END: zstack
+    .sheet(isPresented: $isShowColorPicker) {
+      ZStack(alignment: .topTrailing) {
+        CustomColorPicker(color: $EditVM.pickerColors[at], isSelected: $isSelected)
 
+        HStack {
+          // Delete button
+          Button {
+            EditVM.pickerColors.remove(at: at)
+          } label: {
+            Image(systemName: "trash.circle")
+              .font(.system(size: 24))
+              .foregroundColor(Color.theme.primaryText)
+          }
+          
           // Close custom color picker button
           Button {
-            isShowColorPicker = false
+            self.isShowColorPicker = false
           } label: {
             Image(systemName: "xmark.circle")
               .font(.system(size: 24))
               .foregroundColor(Color.theme.primaryText)
           }
-          .padding()
         }
-        .presentationDetents([.height(550)])
-      } // END: sheet
-      
-//      if isShowColorPicker {
-//        CustomColorPicker(color: $color, isSelected: $isSelected)
-//      }
-      
-    }
+        .padding()
+      }
+      .presentationDetents([.height(550)])
+    } // END: sheet
   }
 }
 
