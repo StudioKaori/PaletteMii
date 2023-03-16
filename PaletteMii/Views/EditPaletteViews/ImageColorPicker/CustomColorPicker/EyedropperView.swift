@@ -19,7 +19,7 @@ struct EyedropperView: View {
         .frame(width: 44, height: 44)
         .foregroundColor(Color.theme.textFieldBg)
       
-      CustomColorPicker(editVM: editVM)
+      CustomColorPickerForEyedropper(editVM: editVM)
         .frame(width: 74, height: 50, alignment: .topLeading)
         .clipped()
         .offset(x: 26, y: -3)

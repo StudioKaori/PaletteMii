@@ -9,9 +9,12 @@ import SwiftUI
 
 class EditViewModel: ObservableObject {
   @Published var pickerColors: [PickerColor] = []
+  
+  var editSelectedColor: Color = .clear
+  var editTargetPickerColorIndex = 0
 }
 
-struct PickerColor: Identifiable {
+struct PickerColor: Identifiable, Hashable {
   let id: UUID = UUID()
   var color: Color
 }

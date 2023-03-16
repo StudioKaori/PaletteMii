@@ -10,7 +10,6 @@ import SwiftUI
 struct GenerateFromImageView: View {
   @ObservedObject var editVM = EditViewModel()
   @State var isShowColorPicker: Bool = false
-  @State var selectedColor: UIColor = .clear
   
   func move(from source: IndexSet, to destination: Int) {
     editVM.pickerColors.move(fromOffsets: source, toOffset: destination)
@@ -21,42 +20,16 @@ struct GenerateFromImageView: View {
       ImageColorPickerView()
       
       HStack {
-        ForEach(editVM.pickerColors) { pickerColor in
+        ForEach(Array(editVM.pickerColors.enumerated()), id: \.element) { index, pickerColor in
           Button {
             self.isShowColorPicker.toggle()
+            editVM.editTargetPickerColorIndex = index
           } label: {
             Circle()
               .foregroundColor(pickerColor.color)
               .frame(width: 46, height: 46)
           }
-          .sheet(isPresented: $isShowColorPicker) {
-            ZStack(alignment: .topTrailing) {
-              CustomColorPicker(editVM: editVM, pickerColor: pickerColor, selectedColor: $selectedColor)
-              
-              HStack {
-                // Delete button
-                Button {
-                  //editVM.pickerColors.remove(pickerColor)
-                } label: {
-                  Image(systemName: "trash.circle")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color.theme.primaryText)
-                }
-                
-                // Close custom color picker button
-                Button {
-                  self.isShowColorPicker = false
-                  pickerColor.color = Color(uiColor: selectedColor)
-                } label: {
-                  Image(systemName: "xmark.circle")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color.theme.primaryText)
-                }
-              }
-              .padding()
-            }
-            .presentationDetents([.height(550)])
-          } // END: sheet
+          
         }
         .onMove(perform: move)
         
@@ -64,6 +37,34 @@ struct GenerateFromImageView: View {
         Spacer()
       }
     }
+    .sheet(isPresented: $isShowColorPicker) {
+      ZStack(alignment: .topTrailing) {
+        CustomColorPicker(editVM: editVM)
+        
+        HStack {
+          // Delete button
+          Button {
+            //editVM.pickerColors.remove(pickerColor)
+          } label: {
+            Image(systemName: "trash.circle")
+              .font(.system(size: 24))
+              .foregroundColor(Color.theme.primaryText)
+          }
+          
+          // Close custom color picker button
+          Button {
+            self.isShowColorPicker = false
+            editVM.pickerColors[editVM.editTargetPickerColorIndex].color = editVM.editSelectedColor
+          } label: {
+            Image(systemName: "xmark.circle")
+              .font(.system(size: 24))
+              .foregroundColor(Color.theme.primaryText)
+          }
+        }
+        .padding()
+      }
+      .presentationDetents([.height(550)])
+    } // END: sheet
 
   }
 }

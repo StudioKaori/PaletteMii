@@ -16,13 +16,6 @@ struct ImageUploaderView : View {
   
   private func deleteImage() {
     imageData = Data()
-    //    if vm.showingEditSheet {
-    //      todoDataManager.imageData = nil
-    //      if let imageId = vm.editTargetTodo?.imageId {
-    //        todoDataManager.deleteTodoImageEntity(imageId: imageId)
-    //        vm.editTargetTodo?.imageId = nil
-    //      }
-    //    }
   }
   
   var body: some View {

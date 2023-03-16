@@ -12,28 +12,8 @@ import SwiftUI
 struct CustomColorPicker: UIViewControllerRepresentable {
   
   var editVM: EditViewModel
-  var pickerColor: PickerColor
-  let isEditMode: Bool
-  @Binding var selectedColor: UIColor
-  
-  init(editVM: EditViewModel, pickerColor: PickerColor, selectedColor: Binding<UIColor>) {
-    print("init edit")
-    self.editVM = editVM
-    self.pickerColor = pickerColor
-    self.isEditMode = true
-    _selectedColor = selectedColor
-  }
-  
-  init(editVM: EditViewModel) {
-    self.editVM = editVM
-    self.pickerColor = PickerColor(color: .clear)
-    self.isEditMode = false
-    _selectedColor = Binding<UIColor>(
-       get: { UIColor.clear },
-       set: { _ in }
-     )
-    print("init new: \(self.pickerColor.id)")
-  }
+  //var pickerColor: PickerColor
+  //@Binding var selectedColor: Color
   
   // This event is called before UIKit view is called, and execute the initialiser
   func makeCoordinator() -> Coordinator {
@@ -72,15 +52,8 @@ struct CustomColorPicker: UIViewControllerRepresentable {
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
       
-      if parent.isEditMode {
-        print("colorPickerViewController21  :\(Color(color).description)")
-        parent.selectedColor = color
-      } else {
-        print("colorPickerViewController22:  \(Color(color).description)")
-        parent.pickerColor = PickerColor(color: Color(color))
-        parent.editVM.pickerColors.append(parent.pickerColor)
-      }
-      //print("colorPickerViewController2: \(parent.editVM.pickerColors)")
+      parent.editVM.editSelectedColor = Color(viewController.selectedColor)
+      //print("colorPickerViewController2: \(parent.selectedColor)")
     }
   }
 }
