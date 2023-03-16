@@ -8,7 +8,7 @@
 import SwiftUI
 
 class EditViewModel: ObservableObject {
-  @Published var pickerColors: [PickerColor] = [PickerColor(color: .clear)]
+  @Published var pickerColors: [PickerColor] = []
 }
 
 struct PickerColor: Identifiable {

@@ -8,18 +8,10 @@
 import SwiftUI
 
 struct EyedropperView: View {
-  //let bgColor: Color
-  //var pickerColor: PickerColor
   @ObservedObject var editVM: EditViewModel
-  //@State var color: Color =
-  //@State var isSelected: Bool = false
   
   var body: some View {
     ZStack {
-      
-//      Circle()
-////        .foregroundColor(pickerColor.color)
-////        .frame(width: 46, height: 46)
       
       Image(systemName: "circle")
         .resizable()
@@ -31,19 +23,6 @@ struct EyedropperView: View {
         .frame(width: 74, height: 50, alignment: .topLeading)
         .clipped()
         .offset(x: 26, y: -3)
-      
-//      if !isSelected {
-//
-//      } else {
-//        Button {
-//          isShowColorPicker.toggle()
-//        } label: {
-//          Circle()
-//            .foregroundColor(pickerColor.color)
-//            .frame(width: 46, height: 46)
-//        }
-//
-//      }
       
     } // END: zstack
 

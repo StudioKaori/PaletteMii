@@ -11,12 +11,23 @@ import SwiftUI
 // MARK: -cutsom Color picker with the help of UIColor picker
 struct CustomColorPicker: UIViewControllerRepresentable {
   
-  // MARK: picker values
-//  var pickerColor: PickerColor
-//  @Binding var isSelected: Bool
+  var editVM: EditViewModel
+  var pickerColor: PickerColor
+  let isEditMode: Bool
   
-  let editVM: EditViewModel
-  let pickerColor: PickerColor
+  init(editVM: EditViewModel, pickerColor: PickerColor) {
+    print("init edit")
+    self.editVM = editVM
+    self.pickerColor = pickerColor
+    self.isEditMode = true
+  }
+  
+  init(editVM: EditViewModel) {
+    self.editVM = editVM
+    self.pickerColor = PickerColor(color: .clear)
+    self.isEditMode = false
+    print("init new: \(self.pickerColor.id)")
+  }
   
   // This event is called before UIKit view is called, and execute the initialiser
   func makeCoordinator() -> Coordinator {
@@ -27,7 +38,6 @@ struct CustomColorPicker: UIViewControllerRepresentable {
     
     let picker = UIColorPickerViewController()
     picker.supportsAlpha = false
-    //picker.selectedColor = UIColor(color)
     
     // connecting delegate
     picker.delegate = context.coordinator
@@ -50,14 +60,21 @@ struct CustomColorPicker: UIViewControllerRepresentable {
     }
     
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-      // Updating color
+      print("colorPickerViewController0")
       //parent.pickerColor.color = Color(viewController.selectedColor)
     }
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
-      //parent.pickerColor.color = Color(color)
-      //parent.isSelected = true
-      parent.editVM.pickerColors.append(PickerColor(color: Color(viewController.selectedColor)))
+      
+      if parent.isEditMode {
+        print("colorPickerViewController21  :\(Color(color).description)")
+        parent.pickerColor.color = Color(color)
+      } else {
+        print("colorPickerViewController22:  \(Color(color).description)")
+        parent.pickerColor = PickerColor(color: Color(color))
+        parent.editVM.pickerColors.append(parent.pickerColor)
+      }
+      //print("colorPickerViewController2: \(parent.editVM.pickerColors)")
     }
   }
 }

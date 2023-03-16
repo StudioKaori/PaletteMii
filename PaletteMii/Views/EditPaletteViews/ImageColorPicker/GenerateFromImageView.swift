@@ -28,6 +28,33 @@ struct GenerateFromImageView: View {
               .foregroundColor(pickerColor.color)
               .frame(width: 46, height: 46)
           }
+          .sheet(isPresented: $isShowColorPicker) {
+            ZStack(alignment: .topTrailing) {
+              CustomColorPicker(editVM: editVM, pickerColor: pickerColor)
+              
+              HStack {
+                // Delete button
+                Button {
+                  //editVM.pickerColors.remove(pickerColor)
+                } label: {
+                  Image(systemName: "trash.circle")
+                    .font(.system(size: 24))
+                    .foregroundColor(Color.theme.primaryText)
+                }
+                
+                // Close custom color picker button
+                Button {
+                  self.isShowColorPicker = false
+                } label: {
+                  Image(systemName: "xmark.circle")
+                    .font(.system(size: 24))
+                    .foregroundColor(Color.theme.primaryText)
+                }
+              }
+              .padding()
+            }
+            .presentationDetents([.height(550)])
+          } // END: sheet
         }
         .onMove(perform: move)
         
@@ -35,33 +62,7 @@ struct GenerateFromImageView: View {
         Spacer()
       }
     }
-    .sheet(isPresented: $isShowColorPicker) {
-      ZStack(alignment: .topTrailing) {
-        CustomColorPicker(editVM: editVM)
-        
-        HStack {
-          // Delete button
-          Button {
-            //editVM.pickerColors.remove(pickerColor)
-          } label: {
-            Image(systemName: "trash.circle")
-              .font(.system(size: 24))
-              .foregroundColor(Color.theme.primaryText)
-          }
-          
-          // Close custom color picker button
-          Button {
-            self.isShowColorPicker = false
-          } label: {
-            Image(systemName: "xmark.circle")
-              .font(.system(size: 24))
-              .foregroundColor(Color.theme.primaryText)
-          }
-        }
-        .padding()
-      }
-      .presentationDetents([.height(550)])
-    } // END: sheet
+
   }
 }
 
