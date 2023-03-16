@@ -10,6 +10,7 @@ import SwiftUI
 struct GenerateFromImageView: View {
   @ObservedObject var editVM = EditViewModel()
   @State var isShowColorPicker: Bool = false
+  @State var selectedColor: UIColor = .clear
   
   func move(from source: IndexSet, to destination: Int) {
     editVM.pickerColors.move(fromOffsets: source, toOffset: destination)
@@ -30,7 +31,7 @@ struct GenerateFromImageView: View {
           }
           .sheet(isPresented: $isShowColorPicker) {
             ZStack(alignment: .topTrailing) {
-              CustomColorPicker(editVM: editVM, pickerColor: pickerColor)
+              CustomColorPicker(editVM: editVM, pickerColor: pickerColor, selectedColor: $selectedColor)
               
               HStack {
                 // Delete button
@@ -45,6 +46,7 @@ struct GenerateFromImageView: View {
                 // Close custom color picker button
                 Button {
                   self.isShowColorPicker = false
+                  pickerColor.color = Color(uiColor: selectedColor)
                 } label: {
                   Image(systemName: "xmark.circle")
                     .font(.system(size: 24))

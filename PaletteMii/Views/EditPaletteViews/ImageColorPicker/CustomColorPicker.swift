@@ -14,18 +14,24 @@ struct CustomColorPicker: UIViewControllerRepresentable {
   var editVM: EditViewModel
   var pickerColor: PickerColor
   let isEditMode: Bool
+  @Binding var selectedColor: UIColor
   
-  init(editVM: EditViewModel, pickerColor: PickerColor) {
+  init(editVM: EditViewModel, pickerColor: PickerColor, selectedColor: Binding<UIColor>) {
     print("init edit")
     self.editVM = editVM
     self.pickerColor = pickerColor
     self.isEditMode = true
+    _selectedColor = selectedColor
   }
   
   init(editVM: EditViewModel) {
     self.editVM = editVM
     self.pickerColor = PickerColor(color: .clear)
     self.isEditMode = false
+    _selectedColor = Binding<UIColor>(
+       get: { UIColor.clear },
+       set: { _ in }
+     )
     print("init new: \(self.pickerColor.id)")
   }
   
@@ -68,7 +74,7 @@ struct CustomColorPicker: UIViewControllerRepresentable {
       
       if parent.isEditMode {
         print("colorPickerViewController21  :\(Color(color).description)")
-        parent.pickerColor.color = Color(color)
+        parent.selectedColor = color
       } else {
         print("colorPickerViewController22:  \(Color(color).description)")
         parent.pickerColor = PickerColor(color: Color(color))
