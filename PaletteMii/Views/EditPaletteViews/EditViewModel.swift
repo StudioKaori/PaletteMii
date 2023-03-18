@@ -8,6 +8,7 @@
 import SwiftUI
 
 class EditViewModel: ObservableObject {
+  @Published var currentPickerColor: PickerColor?
   @Published var pickerColors: [PickerColor] = []
   
   var editSelectedColor: Color = .clear

@@ -11,16 +11,21 @@ struct GenerateFromImageView: View {
   @ObservedObject var editVM = EditViewModel()
   @State var isShowColorPicker: Bool = false
   
-  func move(from source: IndexSet, to destination: Int) {
-    editVM.pickerColors.move(fromOffsets: source, toOffset: destination)
-  }
+  let columns = [
+    GridItem(.fixed(50)),
+    GridItem(.fixed(50)),
+    GridItem(.fixed(50)),
+    GridItem(.fixed(50)),
+    GridItem(.fixed(50)),
+    GridItem(.fixed(50))
+  ]
   
   var body: some View {
     VStack {
       ImageColorPickerView()
       
-      HStack {
-        ForEach(Array(editVM.pickerColors.enumerated()), id: \.element) { index, pickerColor in
+      LazyVGrid(columns: columns) {
+        ForEach(Array(editVM.pickerColors.enumerated()), id: \.element.id) { index, pickerColor in
           Button {
             self.isShowColorPicker.toggle()
             editVM.editTargetPickerColorIndex = index
@@ -29,12 +34,20 @@ struct GenerateFromImageView: View {
               .foregroundColor(pickerColor.color)
               .frame(width: 46, height: 46)
           }
-          
+          .frame(width: 46, height: 46)
+          .onDrag {
+            editVM.currentPickerColor = pickerColor
+            return NSItemProvider(contentsOf: URL(string: "\(pickerColor.id)")!)!
+          }
+          .onDrop(of: [.url], delegate:
+                    DropViewDelegate(pickerColor: pickerColor,
+                                     editVM: editVM))
         }
-        .onMove(perform: move)
+        //        .onMove { source, destination in
+        //          editVM.pickerColors.move(fromOffsets: source, toOffset: destination)
+        //        }
         
         EyedropperView(editVM: editVM)
-        Spacer()
       }
     }
     .sheet(isPresented: $isShowColorPicker) {
@@ -65,7 +78,6 @@ struct GenerateFromImageView: View {
       }
       .presentationDetents([.height(550)])
     } // END: sheet
-
   }
 }
 
@@ -74,3 +86,37 @@ struct GenerateFromImageView: View {
 //    GenerateFromImageView()
 //  }
 //}
+
+
+struct DropViewDelegate: DropDelegate {
+  var pickerColor: PickerColor
+  var editVM: EditViewModel
+  
+  func performDrop(info: DropInfo) -> Bool {
+    return true
+  }
+  
+  func dropEntered(info: DropInfo) {
+    //from
+    let fromIndex = editVM.pickerColors.firstIndex { (item) -> Bool in
+      return item.id == editVM.currentPickerColor?.id
+    } ?? 0
+    
+    //to
+    let toIndex = editVM.pickerColors.firstIndex { (item) -> Bool in
+      return item.id == self.pickerColor.id
+    } ?? 0
+    
+    if fromIndex != toIndex {
+      withAnimation(.default) {
+        let formPage = editVM.pickerColors[fromIndex]
+        editVM.pickerColors[fromIndex] = editVM.pickerColors[toIndex]
+        editVM.pickerColors[toIndex] = formPage
+      }
+    }
+  }
+  
+  func dropUpdated(info: DropInfo) -> DropProposal? {
+    return DropProposal(operation: .move)
+  }
+}
