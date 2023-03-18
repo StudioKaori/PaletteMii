@@ -81,6 +81,17 @@ struct ImageUploaderView : View {
   }
 }
 
+struct ImageUploaderView_Previews: PreviewProvider {
+  @State static var imageData = Data()
+  @State static var source = UIImagePickerController.SourceType.photoLibrary
+  @State static var isImagePicker = false
+  
+  static var previews: some View {
+    ImageUploaderView(imageData: $imageData, source: $source, isImagePicker: $isImagePicker)
+  }
+}
+
+
 struct Imagepicker : UIViewControllerRepresentable {
   
   @Binding var show:Bool

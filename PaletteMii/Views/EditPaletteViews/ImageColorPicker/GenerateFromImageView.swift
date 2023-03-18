@@ -43,9 +43,6 @@ struct GenerateFromImageView: View {
                     DropViewDelegate(pickerColor: pickerColor,
                                      editVM: editVM))
         }
-        //        .onMove { source, destination in
-        //          editVM.pickerColors.move(fromOffsets: source, toOffset: destination)
-        //        }
         
         EyedropperView(editVM: editVM)
       }
@@ -81,13 +78,14 @@ struct GenerateFromImageView: View {
   }
 }
 
-//struct GenerateFromImageView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    GenerateFromImageView()
-//  }
-//}
+struct GenerateFromImageView_Previews: PreviewProvider {
+  static var previews: some View {
+    GenerateFromImageView()
+  }
+}
 
 
+// MARK: - drag and drop delegate
 struct DropViewDelegate: DropDelegate {
   var pickerColor: PickerColor
   var editVM: EditViewModel
