@@ -48,33 +48,7 @@ struct GenerateFromImageView: View {
       }
     }
     .sheet(isPresented: $isShowColorPicker) {
-      ZStack(alignment: .topTrailing) {
-        CustomColorPicker(editVM: editVM)
-        
-        HStack {
-          // Delete button
-          Button {
-            editVM.pickerColors.remove(at: editVM.editTargetPickerColorIndex)
-            self.isShowColorPicker = false
-          } label: {
-            Image(systemName: "trash.circle")
-              .font(.system(size: 24))
-              .foregroundColor(Color.theme.primaryText)
-          }
-          
-          // Close custom color picker button
-          Button {
-            editVM.pickerColors[editVM.editTargetPickerColorIndex].color = editVM.editSelectedColor
-            self.isShowColorPicker = false
-          } label: {
-            Image(systemName: "xmark.circle")
-              .font(.system(size: 24))
-              .foregroundColor(Color.theme.primaryText)
-          }
-        }
-        .padding()
-      }
-      .presentationDetents([.height(550)])
+      EditPickerColorView(editVM: editVM, isShowColorPicker: $isShowColorPicker)
     } // END: sheet
   }
 }

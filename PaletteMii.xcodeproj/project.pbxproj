@@ -16,6 +16,7 @@
 		4392021829C1C17800B9588B /* GenerateFromImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021729C1C17800B9588B /* GenerateFromImageView.swift */; };
 		4392021A29C1F97500B9588B /* EyedropperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021929C1F97500B9588B /* EyedropperView.swift */; };
 		4392021C29C3223600B9588B /* CustomColorPickerForEyedropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021B29C3223600B9588B /* CustomColorPickerForEyedropper.swift */; };
+		4392021F29C5FA4700B9588B /* EditPickerColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4392021E29C5FA4700B9588B /* EditPickerColorView.swift */; };
 		43F2B7DB29B62AD400C063B6 /* PaletteMiiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */; };
 		43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2B7DC29B62AD400C063B6 /* ContentView.swift */; };
 		43F2B7DF29B62AD500C063B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43F2B7DE29B62AD500C063B6 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		4392021729C1C17800B9588B /* GenerateFromImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateFromImageView.swift; sourceTree = "<group>"; };
 		4392021929C1F97500B9588B /* EyedropperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyedropperView.swift; sourceTree = "<group>"; };
 		4392021B29C3223600B9588B /* CustomColorPickerForEyedropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPickerForEyedropper.swift; sourceTree = "<group>"; };
+		4392021E29C5FA4700B9588B /* EditPickerColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPickerColorView.swift; sourceTree = "<group>"; };
 		43F2B7D729B62AD400C063B6 /* PaletteMii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaletteMii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F2B7DA29B62AD400C063B6 /* PaletteMiiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteMiiApp.swift; sourceTree = "<group>"; };
 		43F2B7DC29B62AD400C063B6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,8 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4392021729C1C17800B9588B /* GenerateFromImageView.swift */,
-				4392020A29BB627E00B9588B /* ImageUploaderView.swift */,
-				4392020D29BC95F100B9588B /* ImageColorPickerView.swift */,
+				4392022029C5FCD400B9588B /* ImageUploader */,
 				4392021D29C35B1400B9588B /* CustomColorPicker */,
 			);
 			path = ImageColorPicker;
@@ -103,11 +104,21 @@
 		4392021D29C35B1400B9588B /* CustomColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				4392021E29C5FA4700B9588B /* EditPickerColorView.swift */,
 				4392021229BC995100B9588B /* CustomColorPicker.swift */,
 				4392021B29C3223600B9588B /* CustomColorPickerForEyedropper.swift */,
 				4392021929C1F97500B9588B /* EyedropperView.swift */,
 			);
 			path = CustomColorPicker;
+			sourceTree = "<group>";
+		};
+		4392022029C5FCD400B9588B /* ImageUploader */ = {
+			isa = PBXGroup;
+			children = (
+				4392020A29BB627E00B9588B /* ImageUploaderView.swift */,
+				4392020D29BC95F100B9588B /* ImageColorPickerView.swift */,
+			);
+			path = ImageUploader;
 			sourceTree = "<group>";
 		};
 		43F2B7CE29B62AD400C063B6 = {
@@ -228,6 +239,7 @@
 				43F2B7DD29B62AD400C063B6 /* ContentView.swift in Sources */,
 				4392021829C1C17800B9588B /* GenerateFromImageView.swift in Sources */,
 				4392021C29C3223600B9588B /* CustomColorPickerForEyedropper.swift in Sources */,
+				4392021F29C5FA4700B9588B /* EditPickerColorView.swift in Sources */,
 				4392020B29BB627E00B9588B /* ImageUploaderView.swift in Sources */,
 				4392020329BA34B700B9588B /* Color.swift in Sources */,
 				43F2B7DB29B62AD400C063B6 /* PaletteMiiApp.swift in Sources */,
