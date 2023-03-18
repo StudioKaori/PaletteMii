@@ -54,7 +54,8 @@ struct GenerateFromImageView: View {
         HStack {
           // Delete button
           Button {
-            //editVM.pickerColors.remove(pickerColor)
+            editVM.pickerColors.remove(at: editVM.editTargetPickerColorIndex)
+            self.isShowColorPicker = false
           } label: {
             Image(systemName: "trash.circle")
               .font(.system(size: 24))
@@ -63,8 +64,8 @@ struct GenerateFromImageView: View {
           
           // Close custom color picker button
           Button {
-            self.isShowColorPicker = false
             editVM.pickerColors[editVM.editTargetPickerColorIndex].color = editVM.editSelectedColor
+            self.isShowColorPicker = false
           } label: {
             Image(systemName: "xmark.circle")
               .font(.system(size: 24))
